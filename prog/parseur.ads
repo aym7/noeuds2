@@ -1,12 +1,15 @@
 package Parseur is
 
+	type Liaisons is array(Integer range <>) of Integer;
+
 	type Point is record 
 		X, Y : Float ;
 	end record ;
 
 	type Sommet is record 
 		Connexions : Integer;
-		Coord : access Point ;
+		Coord : access Point;
+		Liens : access Liaisons;
 	end record ;
 
 	type Table is array(Integer range <>) of access Sommet;

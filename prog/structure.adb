@@ -7,17 +7,23 @@ use Ada.Text_IO, Ada.Float_Text_IO, Ada.Integer_Text_IO;
 with svg;
 use svg;
 
-with Parseur;
+with Parseur; use Parseur;
 
 procedure Structure is
-	Nombre_Sommets : Natural;
+	NombreSommets : Natural;
 begin
 
 	if Argument_Count /= 1 then
 		Put_Line(Standard_Error, "utilisation : ./structure graph.kn");
-		return ;
+		return;
 	end if;
 
-	Parseur.Get_Nombre_Sommets(Argument(1), Nombre_Sommets);
+	Parseur.Lecture_En_Tete(Argument(1), NombreSommets);
 
+	declare
+		Graphe : Table (1 .. NombreSommets);
+	begin
+		Parseur.Lecture(Argument(1), NombreSommets, Graphe);
 	end ;
+
+end Structure;

@@ -1,10 +1,11 @@
 package Parseur is
 
-	type Liaisons is array(Integer range <>) of Integer;
+	type Point is record
+		X : Float;
+		Y : Float;
+	end record;
 
-	type Point is record 
-		X, Y : Float ;
-	end record ;
+	type Liaisons is array(Integer range <>) of Integer;
 
 	type Sommet is record 
 		Connexions : Integer;
@@ -15,7 +16,7 @@ package Parseur is
 	type Table is array(Integer range <>) of access Sommet;
 
 	procedure Lecture_En_Tete (filename : in String; Sommets : out Natural);
-	
+
 	procedure Lecture (filename : in String; Sommets : in Natural; Tableau : in out Table);
 
-	end ;
+end ;

@@ -1,0 +1,9 @@
+BUG :
+	les lignes sont dessinées 2 fois
+	les variables ne sont pas désalouées
+	
+
+TODO : 
+	stocker les Croix
+	les tracer au milieu du segment
+	

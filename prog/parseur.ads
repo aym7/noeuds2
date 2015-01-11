@@ -1,5 +1,5 @@
 package Parseur is
-
+   
 	type Point is record
 		X : Float;
 		Y : Float;
@@ -8,15 +8,15 @@ package Parseur is
 	type Liaisons is array(Integer range <>) of Integer;
 
 	type Sommet is record 
-		Connexions : Integer;
+		connexions : Integer;
 		Coord : access Point;
-		Liens : access Liaisons;
+		Liens : access Liaisons; -- surement mieux de prendre une liste/pile
 	end record ;
 
-	type Table is array(Integer range <>) of access Sommet;
+	type Graphe is array(Integer range <>) of access Sommet;
 
-	procedure Lecture_En_Tete (filename : in String; Sommets : out Natural);
+	procedure lectureEnTete (filename : in String; Sommets : out Natural);
 
-	procedure Lecture (filename : in String; Sommets : in Natural; Tableau : in out Table);
+	procedure Lecture (filename : in String; Sommets : in Natural; Figure : in out Graphe);
 
 end ;

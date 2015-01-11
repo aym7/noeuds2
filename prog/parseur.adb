@@ -6,24 +6,24 @@ package body Parseur is
 
 	file : File_Type;
 
-	procedure Lecture_En_Tete (filename : in String; Sommets : out Natural) is
+	procedure lectureEnTete (filename : in String; sommets : out Natural) is
 	begin
 		Open (File => file, Mode => In_File, Name => filename);
-		Get(file, Sommets);
-		--Put("Il y a ") ; Put(Sommets, Width => 0) ; Put(" Sommets.");
+		Get(file, sommets);
+		--Put("Il y a ") ; Put(sommets, Width => 0) ; Put(" Sommets.");
 	end;
 
-	procedure Lecture (filename : in String; Sommets : in Natural; Tableau : in out Table) is
-		Nb_Liaisons : Integer ;
+	procedure Lecture (filename : in String; sommets : in Natural; Figure : in out Graphe) is
+		nbLiaisons : Integer ;
 	begin
-		for i in 1..Sommets loop
-			Get(file, Tableau(i).all.Coord.all.X);
-			Get(file, Tableau(i).all.Coord.all.Y);
-			Get(file, Nb_Liaisons);
-			Tableau(i).all.Connexions := Nb_Liaisons;
-			Tableau(i).all.Liens := new Liaisons (1 .. Nb_Liaisons);
-			for j in 1..Nb_Liaisons loop
-				Get(file, Tableau(i).all.Liens.all(j));
+		for i in 1..sommets loop
+			Get(file, Figure(i).all.Coord.all.X);
+			Get(file, Figure(i).all.Coord.all.Y);
+			Get(file, nbLiaisons);
+			Figure(i).all.Connexions := nbLiaisons;
+			Figure(i).all.Liens := new Liaisons (1 .. nbLiaisons);
+			for j in 1..nbLiaisons loop
+				Get(file, Figure(i).all.Liens.all(j));
 			end loop;
 		end loop;
 	end;

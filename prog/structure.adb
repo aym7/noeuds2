@@ -10,7 +10,7 @@ use svg;
 with Parseur; use Parseur;
 
 procedure Structure is
-	NombreSommets : Natural;
+	nombreSommets : Natural;
 begin
 
 	if Argument_Count /= 1 then
@@ -18,20 +18,20 @@ begin
 		return;
 	end if;
 
-	Parseur.Lecture_En_Tete(Argument(1), NombreSommets);
+	Parseur.lectureEnTete(Argument(1), nombreSommets);
 
 	declare
-		Graphe : Table (1 .. NombreSommets);
+		Figure : Graphe (1 .. nombreSommets);
 	begin
-		for i in 1..NombreSommets loop
-			Graphe(i) := new Sommet;
-			Graphe(i).all.Coord := new Point;
+		for i in 1..nombreSommets loop
+			Figure(i) := new Sommet;
+			Figure(i).all.Coord := new Point;
 		end loop;
 
-		Parseur.Lecture(Argument(1), NombreSommets, Graphe);
+		Parseur.Lecture(Argument(1), nombreSommets, Figure);
 
 		Svg_Header(10,10);
-		Svg.TracerAretes(Graphe, NombreSommets);
+		Svg.TracerAretes(Figure, nombreSommets);
 		Svg_Footer;
 
 	end ;

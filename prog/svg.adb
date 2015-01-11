@@ -36,11 +36,11 @@ package body Svg is
 		Display_Height := Float(Height);
 	end Svg_Header;
 
-	procedure TracerAretes(Tableau : in Table; Sommets : in Natural) is
+	procedure TracerAretes(Figure : in Graphe; Sommets : in Natural) is
 	begin
 		for i in 1..Sommets loop
-			for j in 1..Tableau(i).all.Connexions loop
-				Svg_Line(Tableau(i).all.Coord.all, Tableau(Tableau(i).all.Liens.all(j)).all.Coord.all, Black);
+			for j in 1..Figure(i).all.Connexions loop
+				Svg_Line(Figure(i).all.Coord.all, Figure(Figure(i).all.Liens.all(j)).all.Coord.all, Black);
 			end loop;
 		end loop;
 	end TracerAretes;

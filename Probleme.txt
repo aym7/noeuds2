@@ -1,0 +1,3 @@
+Le souci actuel c'est le stockage des coordonnées des milieux des segments. La procédure GetMilieux fonctionne correctement, mais les milieux font des trucs bizarres dans la procédure GetCroix.
+
+Du coup, ça considère que le milieu de chaque segment est (0,0). Et du coup ça fait les rotations par rapport à l'origine.

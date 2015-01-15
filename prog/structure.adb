@@ -4,10 +4,11 @@ use Ada.Command_Line;
 with Ada.Text_IO, Ada.Float_Text_IO, Ada.Integer_Text_IO;
 use Ada.Text_IO, Ada.Float_Text_IO, Ada.Integer_Text_IO;
 
-with svg;
-use svg;
+with Svg;
+use Svg;
 
-with Parseur; use Parseur;
+with Parseur;
+use Parseur;
 
 procedure Structure is
 	nombreSommets : Natural;
@@ -27,13 +28,13 @@ begin
 			Figure(i) := new Sommet;
 			Figure(i).all.Coord := new Point;
 		end loop;
-
 		Parseur.Lecture(Argument(1), nombreSommets, Figure);
-
 		Svg_Header(10,10);
 		Svg.TracerAretes(Figure, nombreSommets);
+		Parseur.GetMilieux(nombreSommets, Figure);
+		Parseur.GetCroix(nombreSommets, Figure);
+		Svg.TracerCroix(Figure, nombreSommets);
 		Svg_Footer;
-
 	end ;
 
 end Structure;

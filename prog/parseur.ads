@@ -5,12 +5,29 @@ package Parseur is
 		Y : Float;
 	end record;
 
-	type Liaisons is array(Integer range <>) of Integer;
+	type Croix is record
+		P1 : Point ;
+		P2 : Point ;
+		P3 : Point ;
+		P4 : Point ;
+	end record;
+
+	type Arete is record
+		Milieu : Point ;
+		Cr : Croix ;
+	end record;
+
+	type Liens is record
+	       Numero : Integer ;
+	       Pointeur : access Arete ;
+	end record;
+
+	type Liaisons is array(Integer range <>) of Liens ;
 
 	type Sommet is record 
-		connexions : Integer;
+		Connexions : Integer;
 		Coord : access Point;
-		Liens : access Liaisons; -- surement mieux de prendre une liste/pile
+		Reseaux : access Liaisons; 
 	end record ;
 
 	type Graphe is array(Integer range <>) of access Sommet;
@@ -18,5 +35,9 @@ package Parseur is
 	procedure lectureEnTete (filename : in String; Sommets : out Natural);
 
 	procedure Lecture (filename : in String; Sommets : in Natural; Figure : in out Graphe);
+
+	procedure GetMilieux (sommets : in Natural ; Figure : in out Graphe);
+
+	procedure GetCroix (sommets : in Natural ; Figure : in out Graphe);
 
 end ;

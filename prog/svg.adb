@@ -38,22 +38,39 @@ package body Svg is
 
    procedure TracerAretes(Figure : in Graphe; nbSommets : in Natural) is
    begin
-      for i in 1..nbSommets loop
-	 for j in 1..Figure(i).all.Connexions loop
+	   for i in 1..nbSommets loop
+		   for j in 1..Figure(i).all.Connexions loop
 
-	   if Figure(i).all.Liens.all(j) > i then -- if the line hasn't been drawn yet
-	       Svg_Line(Figure(i).all.Coord.all, 
-		     Figure(Figure(i).all.Liens.all(j)).all.Coord.all, 
-		     Black);
-	   end if;
+			   if Figure(i).all.Reseaux.all(j).Numero > i then -- if the line hasn't been drawn yet
+				   Svg_Line(Figure(i).all.Coord.all, 
+				   Figure(Figure(i).all.Reseaux.all(j).Numero).all.Coord.all, 
+				   Black);
+			   end if;
 
-	 end loop;
-      end loop;
+		   end loop;
+	   end loop;
    end TracerAretes;
+
+   procedure TracerCroix(Figure : in Graphe; nbSommets : in Natural) is
+	   P1, P2, P3, P4 : Point ;
+   begin
+	   for i in 1..nbSommets loop
+		   for j in 1..Figure(i).all.Connexions loop
+			   if Figure(i).all.Reseaux.all(j).Numero > i then 
+				   P1 := Figure(i).all.Reseaux.all(j).Pointeur.all.Cr.P1 ;
+				   P2 := Figure(i).all.Reseaux.all(j).Pointeur.all.Cr.P2 ;
+				   P3 := Figure(i).all.Reseaux.all(j).Pointeur.all.Cr.P3 ;
+				   P4 := Figure(i).all.Reseaux.all(j).Pointeur.all.Cr.P4 ;
+				   Svg_Line(P1, P3, Red);
+				   Svg_Line(P2, P4, Red);
+			   end if;
+		   end loop;
+	   end loop;
+   end TracerCroix;
 
    procedure Svg_Footer is
    begin
-      Put_Line("</svg>");
+	   Put_Line("</svg>");
    end Svg_Footer;
 
 end Svg;

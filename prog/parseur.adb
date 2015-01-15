@@ -35,8 +35,8 @@ package body Parseur is
 			P1 := Figure(i).all.Coord.all ;
 			for j in 1..Figure(i).all.Connexions loop
 				P2 := Figure(Figure(i).all.Reseaux.all(j).Numero).all.Coord.all ;
-				if Figure(i).all.Reseaux.all(j).Numero > i then
 					Figure(i).all.Reseaux.all(j).Pointeur := new Arete;
+				if Figure(i).all.Reseaux.all(j).Numero > i then
 					Figure(i).all.Reseaux.all(j).Pointeur.all.Milieu := (P1+P2)*0.5 ;
 				end if;
 			end loop;
@@ -53,7 +53,6 @@ package body Parseur is
 			Point1 := Figure(i).all.Coord.all;
 			for j in 1..Figure(i).all.Connexions loop
 				Point2 := Figure(Figure(i).all.Reseaux.all(j).Numero).all.Coord.all;
-				Figure(i).all.Reseaux.all(j).Pointeur := new Arete ;
 				MilieuSegment := Figure(i).all.Reseaux.all(j).Pointeur.all.Milieu ;
 				if Figure(i).all.Reseaux.all(j).Numero > i then
 					Barycentre := Point1 * 0.25 + Point2 * 0.75;

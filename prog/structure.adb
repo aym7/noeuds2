@@ -28,12 +28,14 @@ begin
 			Figure(i) := new Sommet;
 			Figure(i).all.Coord := new Point;
 		end loop;
-		Parseur.Lecture(Argument(1), nombreSommets, Figure);
+		Parseur.lecture(Argument(1), nombreSommets, Figure);
 		Svg_Header(10,10);
 		Svg.TracerAretes(Figure, nombreSommets);
-		Parseur.GetMilieux(nombreSommets, Figure);
-		Parseur.GetCroix(nombreSommets, Figure);
+
+		Parseur.getMilieux(nombreSommets, Figure);
+		Parseur.getCroix(nombreSommets, Figure);
 		Svg.TracerCroix(Figure, nombreSommets);
+
 		Svg_Footer;
 	end ;
 

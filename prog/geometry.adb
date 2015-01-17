@@ -27,6 +27,7 @@ package body Geometry is
 		return R;
 	end;
 
+	-- tourne par rapport à un point P0 donné
 	function Rotate(P : Point ; Angle : Float ; P0 : Point) return Point is
 		R : Point;
 	begin

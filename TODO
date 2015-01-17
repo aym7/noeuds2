@@ -3,6 +3,8 @@ BUG :
 	
 
 TODO : 
-	stocker les Croix
-	les tracer au milieu du segment
-	
+	essayer d'optimiser le programme
+	remanier les structures de sorte à avoir une syntaxe plus claire
+	faire l'objectif final !!
+
+	peut-être mieux de stocker les définitions des structures dans structure.ads (et non dans parseur !)

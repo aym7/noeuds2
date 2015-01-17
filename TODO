@@ -6,5 +6,7 @@ TODO :
 	essayer d'optimiser le programme
 	remanier les structures de sorte à avoir une syntaxe plus claire
 	faire l'objectif final !!
+		avant de faire des courbes (à part si c'est possible direct ?), faire des "ponts" (on a 2 points intermédiaires, on trace juste des lignes entre ces points pour faire une forme "à peu près" arrondie
+		
 
 	peut-être mieux de stocker les définitions des structures dans structure.ads (et non dans parseur !)

@@ -5,11 +5,11 @@ package Parseur is
 		Y : Float;
 	end record;
 
-	type Croix is record -- todo : trouver noms plus clairs pour points
-		P1 : Point ;
-		P2 : Point ;
-		P3 : Point ;
-		P4 : Point ;
+	type Croix is record
+		pgt : Point ; -- point gauche, sens trigo 
+		pgi : Point ; -- point gauche, sens trigo-inverse
+		pdt : Point ;
+		pdi : Point ;
 	end record;
 
 	type Arete is record

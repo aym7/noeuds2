@@ -5,11 +5,11 @@ package Parseur is
 		Y : Float;
 	end record;
 
-	type Croix is record -- todo : trouver noms plus clairs pour points
-		P1 : Point ;
-		P2 : Point ;
-		P3 : Point ;
-		P4 : Point ;
+	type Croix is record
+		P1t : Point ;
+		P2i : Point ;
+		P2t : Point ;
+		P1i : Point ;
 	end record;
 
 	type Arete is record
@@ -18,8 +18,8 @@ package Parseur is
 	end record;
 
 	type Liens is record
-	       indVoisin : Integer ;
-	       aretePtr : access Arete ;
+		indVoisin : Integer ;
+		aretePtr : access Arete ;
 	end record;
 
 	type Liaisons is array(Integer range <>) of Liens ;

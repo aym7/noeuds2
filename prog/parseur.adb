@@ -21,14 +21,14 @@ package body Parseur is
 		for i in 1..sommets loop
 
 		   -- récupère les données du points 
-			Get(file, Figure(i).all.Coord.all.X);
-			Get(file, Figure(i).all.Coord.all.Y);
-			Get(file, Figure(i).all.connexions);
+			Get(file, Figure(i).Coord.X);
+			Get(file, Figure(i).Coord.Y);
+			Get(file, Figure(i).connexions);
 
 			-- récupère les points adjacents à ce dernier
-			Figure(i).all.Reseaux := new Liaisons (1 .. Figure(i).all.connexions);
-			for j in 1..Figure(i).all.connexions loop
-				Get(file, Figure(i).all.Reseaux.all(j).indVoisin);
+			Figure(i).Reseaux := new Liaisons (1 .. Figure(i).connexions);
+			for j in 1..Figure(i).connexions loop
+				Get(file, Figure(i).Reseaux(j).indVoisin);
 			end loop;
 		end loop;
 
@@ -42,22 +42,24 @@ package body Parseur is
 	begin
 	        -- pour tous les points du graphe...
 		for i in 1..sommets loop
-			p1 := Figure(i).all.Coord.all ; -- récupère les coordonnées du point
+			p1 := Figure(i).Coord.all ; -- récupère les coordonnées du point
 
 			-- pour tous les voisins de chaque point
-			for j in 1..Figure(i).all.Connexions loop
+			for j in 1..Figure(i).Connexions loop
 			      -- récupère les coordonnées du voisin
-				p2 := Figure(Figure(i).all.Reseaux.all(j).indVoisin).all.Coord.all ;
+				p2 := Figure(Figure(i).Reseaux(j).indVoisin).Coord.all ;
 
 				-- créé une nouvelle arrète entre ces deux points
 				-- TODO : si l'arrete existe déjà pour le "petit" voisin, ne pas la recréer
-			        Figure(i).all.Reseaux.all(j).aretePtr := new Arete;
-				if Figure(i).all.Reseaux.all(j).indVoisin > i then
-					Figure(i).all.Reseaux.all(j).aretePtr.all.Milieu := (p1+p2)*0.5 ;
+			        Figure(i).Reseaux(j).aretePtr := new Arete;
+				if Figure(i).Reseaux(j).indVoisin > i then
+					Figure(i).Reseaux(j).aretePtr.Milieu := (p1+p2)*0.5 ;
 				end if;
 			end loop;
 		end loop;
 	end ;
+
+
 
 	procedure getCroix (sommets : in Natural ; Figure : in out Graphe) is
 		barycentre : Point ;
@@ -67,26 +69,26 @@ package body Parseur is
 	begin
 	   -- pour tous les points du graphe...
 		for i in 1..sommets loop
-			point1 := Figure(i).all.Coord.all;
+			point1 := Figure(i).Coord.all;
 			
 			-- pour tous les voisins de chaque point
-			for j in 1..Figure(i).all.Connexions loop
+			for j in 1..Figure(i).Connexions loop
 			      -- récupère coordonnées voisins
-				point2 := Figure(Figure(i).all.Reseaux.all(j).indVoisin).all.Coord.all;
+				point2 := Figure(Figure(i).Reseaux(j).indVoisin).Coord.all;
 				-- récupère milieu segment
-				milieuSegment := Figure(i).all.Reseaux.all(j).aretePtr.all.Milieu ;
+				milieuSegment := Figure(i).Reseaux(j).aretePtr.Milieu ;
 
 				-- si la croix n'a pas déjà été calculée..
-				if Figure(i).all.Reseaux.all(j).indVoisin > i then
+				if Figure(i).Reseaux(j).indVoisin > i then
 				        -- on calcule ses points
 					barycentre := point1 * 0.25 + point2 * 0.75;
-					p1 := Rotate (barycentre, 45.0, milieuSegment) ;
-					p2 := Rotate (barycentre, 135.0, milieuSegment) ;
-					p3 := Rotate (barycentre, -135.0, milieuSegment) ;
-					p4 := Rotate (barycentre, -45.0, milieuSegment) ;
+					p1 := Rotate (barycentre, 45.0, milieuSegment) ; -- gauche
+					p2 := Rotate (barycentre, 135.0, milieuSegment) ; -- droite
+					p3 := Rotate (barycentre, -135.0, milieuSegment) ; -- gauche
+					p4 := Rotate (barycentre, -45.0, milieuSegment) ; -- droite
 
 					-- et on les stockes
-					Figure(i).all.Reseaux.all(j).aretePtr.all.cross := (p1,p2,p3,p4);
+					Figure(i).Reseaux(j).aretePtr.cross := (p1,p2,p3,p4);
 				end if;
 			end loop;
 		end loop;

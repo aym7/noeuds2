@@ -38,44 +38,69 @@ package body Svg is
 
    procedure TracerAretes(Figure : in Graphe; nbSommets : in Natural) is
    begin
-	   for i in 1..nbSommets loop
-		   for j in 1..Figure(i).all.Connexions loop
+      for i in 1..nbSommets loop
+	 for j in 1..Figure(i).Connexions loop
 
-			   if Figure(i).all.Reseaux.all(j).indVoisin > i then -- if the line hasn't been drawn yet
-				   Svg_Line(Figure(i).all.Coord.all, 
-				   Figure(Figure(i).all.Reseaux.all(j).indVoisin).all.Coord.all, 
-				   Black);
-			   end if;
+	    if Figure(i).Reseaux(j).indVoisin > i then -- if the line hasn't been drawn yet
+	       Svg_Line(Figure(i).Coord.all, 
+	       Figure(Figure(i).Reseaux(j).indVoisin).Coord.all, 
+	       Black);
+	    end if;
 
-		   end loop;
-	   end loop;
+	 end loop;
+      end loop;
    end TracerAretes;
 
 
 
    procedure TracerCroix(Figure : in Graphe; nbSommets : in Natural) is
-	   p1, p2, p3, p4 : Point ;
+      p1, p2, p3, p4 : Point ;
    begin
-	   for i in 1..nbSommets loop
-		   for j in 1..Figure(i).all.Connexions loop
-			   -- si la croix n'a pas déjà été tracée..
-			   if Figure(i).all.Reseaux.all(j).indVoisin > i then 
-				   p1 := Figure(i).all.Reseaux.all(j).aretePtr.all.cross.p1 ;
-				   p2 := Figure(i).all.Reseaux.all(j).aretePtr.all.cross.p2 ;
-				   p3 := Figure(i).all.Reseaux.all(j).aretePtr.all.cross.p3 ;
-				   p4 := Figure(i).all.Reseaux.all(j).aretePtr.all.cross.p4 ;
-				   Svg_Line(p1, p3, Red);
-				   Svg_Line(p2, p4, Red);
-			   end if;
-		   end loop;
-	   end loop;
+      for i in 1..nbSommets loop
+	 for j in 1..Figure(i).Connexions loop
+	    -- si la croix n'a pas déjà été tracée..
+	    if Figure(i).Reseaux(j).indVoisin > i then 
+	       p1 := Figure(i).Reseaux(j).aretePtr.cross.p1 ;
+	       p2 := Figure(i).Reseaux(j).aretePtr.cross.p2 ;
+	       p3 := Figure(i).Reseaux(j).aretePtr.cross.p3 ;
+	       p4 := Figure(i).Reseaux(j).aretePtr.cross.p4 ;
+	       Svg_Line(p1, p3, Red);
+	       Svg_Line(p2, p4, Red);
+	    end if;
+	 end loop;
+      end loop;
    end TracerCroix;
 
    -- todo : proc tracerFigure parcourant les boucles une seule fois et appelant tracerAretes et tracerCroix
 
+
+   procedure tracerBoucles (Figure : in Graphe; nbSommets : in Natural) is
+   begin
+
+      for i in 1..nbSommets loop
+	 for j in 1..Figure(i).connexions loop
+
+	    new_line;
+
+	 end loop;
+      end loop;
+
+   end tracerBoucles;
+
+
+   -- étant donné une arête et un point donné, calcule l'angle que font les autres arête avec ce dernier et renvoie le point de contrôle vers lequel on se dirige
+   procedure milieuSuivant(coordOrigin, coordEnd : Point) is
+   begin
+
+      new_line;
+
+   end milieuSuivant;
+
+
+
    procedure Svg_Footer is
    begin
-	   Put_Line("</svg>");
+      Put_Line("</svg>");
    end Svg_Footer;
 
 end Svg;

@@ -26,7 +26,7 @@ begin
 	begin
 		for i in 1..nombreSommets loop
 			Figure(i) := new Sommet;
-			Figure(i).all.Coord := new Point;
+			Figure(i).Coord := new Point;
 		end loop;
 		Parseur.lecture(Argument(1), nombreSommets, Figure);
 		Svg_Header(10,10);

@@ -27,7 +27,7 @@ begin
 	 Figure(i).Coord := new Point;
       end loop;
       Parseur.lecture(Argument(1), nombreSommets, Figure);
-      Svg_Header(10,10);
+      Svg_Header(20,20);
       Svg.TracerAretes(Figure, nombreSommets);
 
       Parseur.getRef(nombreSommets, Figure);

@@ -4,11 +4,9 @@ use Ada.Command_Line;
 with Ada.Text_IO, Ada.Float_Text_IO, Ada.Integer_Text_IO;
 use Ada.Text_IO, Ada.Float_Text_IO, Ada.Integer_Text_IO;
 
-with Svg;
-use Svg;
+with Svg; use Svg;
+with Parseur; use Parseur;
 
-with Parseur;
-use Parseur;
 
 procedure Structure is
 	nombreSommets : Natural;
@@ -26,7 +24,7 @@ begin
 	begin
 		for i in 1..nombreSommets loop
 			Figure(i) := new Sommet;
-			Figure(i).all.Coord := new Point;
+			Figure(i).Coord := new Point;
 		end loop;
 		Parseur.lecture(Argument(1), nombreSommets, Figure);
 		Svg_Header(10,10);

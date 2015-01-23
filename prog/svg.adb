@@ -38,21 +38,21 @@ package body Svg is
 
    procedure TracerAretes(Figure : in Graphe; nbSommets : in Natural) is
    begin
-	   for i in 1..nbSommets loop
-		   for j in 1..Figure(i).all.Connexions loop
+      for i in 1..nbSommets loop
+	 for j in 1..Figure(i).Connexions loop
 
-			   if Figure(i).all.Reseaux.all(j).indVoisin > i then -- if the line hasn't been drawn yet
-				   Svg_Line(Figure(i).all.Coord.all, 
-				   Figure(Figure(i).all.Reseaux.all(j).indVoisin).all.Coord.all, 
-				   Black);
-			   end if;
+	    if Figure(i).Reseaux(j).indVoisin > i then -- if the line hasn't been drawn yet
+	       Svg_Line(Figure(i).Coord.all, 
+	       Figure(Figure(i).Reseaux(j).indVoisin).Coord.all, 
+	       Black);
+	    end if;
 
-		   end loop;
-	   end loop;
+	 end loop;
+      end loop;
    end TracerAretes;
 
    procedure TracerCroix(Figure : in Graphe; nbSommets : in Natural) is
-	   p1, p2, p3, p4 : Point ;
+      p1, p2, p3, p4 : Point ;
    begin
 	   for i in 1..nbSommets loop
 		   for j in 1..Figure(i).all.Connexions loop
@@ -82,9 +82,32 @@ package body Svg is
 	   Put(""" fill=""evenodd"" />");
    end Tracer_Bezier;
 
+   procedure tracerBoucles (Figure : in Graphe; nbSommets : in Natural) is
+   begin
+
+      for i in 1..nbSommets loop
+	 for j in 1..Figure(i).connexions loop
+
+	    new_line;
+
+	 end loop;
+      end loop;
+
+   end tracerBoucles;
+
+
+   -- étant donné une arête et un point donné, calcule l'angle que font les autres arête avec ce dernier et renvoie le point de contrôle vers lequel on se dirige
+   procedure milieuSuivant(coordOrigin, coordEnd : Point) is
+   begin
+
+      new_line;
+
+   end milieuSuivant;
+
+
    procedure Svg_Footer is
    begin
-	   Put_Line("</svg>");
+      Put_Line("</svg>");
    end Svg_Footer;
 
 end Svg;

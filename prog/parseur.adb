@@ -4,7 +4,6 @@ with Ada.Float_Text_Io; use Ada.Float_Text_Io;
 with Geometry; use Geometry;
 
 package body Parseur is
-
 	file : File_Type;
 
 	-- récupère le nombre de sommets

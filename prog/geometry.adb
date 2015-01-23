@@ -43,4 +43,9 @@ package body Geometry is
 		return Sqrt(Tmp.X*Tmp.X+Tmp.Y*Tmp.Y);
 	end Distance;
 
+	-- calcule l'angle entre (p1;p2) et (p1;p3)
+	function angleBetween(p1, p2, p3 : Point) return Float is
+	begin
+	   return 1.0;
+	end angleBetween;
 end Geometry;

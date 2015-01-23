@@ -16,4 +16,6 @@ package Geometry is
 	--retourne la distance entre 2 points
 	function Distance(P1, P2 : Point) return Float;
 
+	function angleBetween(p1, p2, p3 : Point) return Float;
+
 end Geometry;

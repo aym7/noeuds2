@@ -37,8 +37,10 @@ package Parseur is
 
 	procedure Lecture (filename : in String; Sommets : in Natural; Figure : in out Graphe);
 
-	procedure GetMilieux (sommets : in Natural ; Figure : in out Graphe);
+	procedure getMilieux (sommets : in Natural ; Figure : in out Graphe ; p1, p2 : in Point ; i,j : Natural);
 
-	procedure GetCroix (sommets : in Natural ; Figure : in out Graphe);
+	procedure getCroix (sommets : in Natural ; Figure : in out Graphe ; p1, p2 : in Point ; i,j : Natural);
+
+	procedure getRef (sommets : in Natural ; Figure : in out Graphe);
 
 end ;

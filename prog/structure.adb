@@ -30,8 +30,7 @@ begin
 		Svg_Header(10,10);
 		Svg.TracerAretes(Figure, nombreSommets);
 
-		Parseur.getMilieux(nombreSommets, Figure);
-		Parseur.getCroix(nombreSommets, Figure);
+		Parseur.getRef(nombreSommets, Figure);
 		Svg.TracerCroix(Figure, nombreSommets);
 
 		Svg_Footer;

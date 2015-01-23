@@ -79,7 +79,7 @@ package body Svg is
 	   Put(P2.X); Put(P2.Y);
 	   Put(P3.X); Put(P3.Y);
 	   Put(P4.X); Put(P4.Y);
-	   Put(""" fill=""evenodd"" />");
+	   Put(""" />");
    end Tracer_Bezier;
 
    procedure tracerBoucles (Figure : in Graphe; nbSommets : in Natural) is

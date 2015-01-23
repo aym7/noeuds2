@@ -9,31 +9,31 @@ with Parseur; use Parseur;
 
 
 procedure Structure is
-	nombreSommets : Natural;
+   nombreSommets : Natural;
 begin
 
-	if Argument_Count /= 1 then
-		Put_Line(Standard_Error, "utilisation : ./structure graph.kn");
-		return;
-	end if;
+   if Argument_Count /= 1 then
+      Put_Line(Standard_Error, "utilisation : ./structure graph.kn");
+      return;
+   end if;
 
-	Parseur.lectureEnTete(Argument(1), nombreSommets);
+   Parseur.lectureEnTete(Argument(1), nombreSommets);
 
-	declare
-		Figure : Graphe (1 .. nombreSommets);
-	begin
-		for i in 1..nombreSommets loop
-			Figure(i) := new Sommet;
-			Figure(i).Coord := new Point;
-		end loop;
-		Parseur.lecture(Argument(1), nombreSommets, Figure);
-		Svg_Header(10,10);
-		Svg.TracerAretes(Figure, nombreSommets);
+   declare
+      Figure : Graphe (1 .. nombreSommets);
+   begin
+      for i in 1..nombreSommets loop
+	 Figure(i) := new Sommet;
+	 Figure(i).Coord := new Point;
+      end loop;
+      Parseur.lecture(Argument(1), nombreSommets, Figure);
+      Svg_Header(10,10);
+      Svg.TracerAretes(Figure, nombreSommets);
 
-		Parseur.getRef(nombreSommets, Figure);
-		Svg.TracerCroix(Figure, nombreSommets);
+      Parseur.getRef(nombreSommets, Figure);
+      Svg.TracerCroix(Figure, nombreSommets);
 
-		Svg_Footer;
-	end ;
+      Svg_Footer;
+   end ;
 
 end Structure;

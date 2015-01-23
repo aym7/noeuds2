@@ -54,32 +54,33 @@ package body Svg is
    procedure TracerCroix(Figure : in Graphe; nbSommets : in Natural) is
       p1, p2, p3, p4 : Point ;
    begin
-	   for i in 1..nbSommets loop
-		   for j in 1..Figure(i).all.Connexions loop
-			   -- si la croix n'a pas déjà été tracée..
-			   if Figure(i).all.Reseaux.all(j).indVoisin > i then 
-				   p1 := Figure(i).all.Reseaux.all(j).aretePtr.all.cross.p1t ;
-				   p2 := Figure(i).all.Reseaux.all(j).aretePtr.all.cross.p2i ;
-				   p3 := Figure(i).all.Reseaux.all(j).aretePtr.all.cross.p2t ;
-				   p4 := Figure(i).all.Reseaux.all(j).aretePtr.all.cross.p1i ;
-				   Svg_Line(p1, p3, Red);
-				   Svg_Line(p2, p4, Red);
-			   end if;
-		   end loop;
-	   end loop;
+      for i in 1..nbSommets loop
+	 for j in 1..Figure(i).all.Connexions loop
+	    -- si la croix n'a pas déjà été tracée..
+	    if Figure(i).all.Reseaux.all(j).indVoisin > i then 
+	       p1 := Figure(i).all.Reseaux.all(j).aretePtr.all.cross.p1t ;
+	       p2 := Figure(i).all.Reseaux.all(j).aretePtr.all.cross.p2i ;
+	       p3 := Figure(i).all.Reseaux.all(j).aretePtr.all.cross.p2t ;
+	       p4 := Figure(i).all.Reseaux.all(j).aretePtr.all.cross.p1i ;
+	       Svg_Line(p1, p3, Red);
+	       Svg_Line(p2, p4, Red);
+	    end if;
+	 end loop;
+      end loop;
    end TracerCroix;
 
    -- todo : proc tracerFigure parcourant les boucles une seule fois et appelant tracerAretes et tracerCroix
 
+   -- trace la courbe de bezier entre deux points en prenant deux points de contrôle
    procedure Tracer_Bezier (P1, P2, P3, P4 : in Point) is
    begin
-	   Put("<path d=""M");
-	   Put(P1.X); Put(P1.Y);
-	   Put(" C");
-	   Put(P2.X); Put(P2.Y);
-	   Put(P3.X); Put(P3.Y);
-	   Put(P4.X); Put(P4.Y);
-	   Put(""" />");
+      Put("<path d=""M");
+      Put(P1.X & " " & P1.Y);
+      Put(" C");
+      Put(P2.X & " " & P2.Y);
+      Put(P3.X & " " & P3.Y);
+      Put(P4.X & " " & P4.Y);
+      Put(""" />");
    end Tracer_Bezier;
 
    procedure tracerBoucles (Figure : in Graphe; nbSommets : in Natural) is
@@ -96,7 +97,8 @@ package body Svg is
    end tracerBoucles;
 
 
-   -- étant donné une arête et un point donné, calcule l'angle que font les autres arête avec ce dernier et renvoie le point de contrôle vers lequel on se dirige
+   -- étant donné une arête et un point donné, calcule l'angle que font 
+   -- les autres arête avec ce dernier et renvoie le point de contrôle vers lequel on se dirige
    procedure milieuSuivant(coordOrigin, coordEnd : Point) is
    begin
 

@@ -75,11 +75,11 @@ package body Svg is
    procedure Tracer_Bezier (P1, P2, P3, P4 : in Point) is
    begin
       Put("<path d=""M");
-      Put(P1.X & " " & P1.Y);
+      Put(Float'Image(P1.X) & " " & Float'Image(P1.Y));
       Put(" C");
-      Put(P2.X & " " & P2.Y);
-      Put(P3.X & " " & P3.Y);
-      Put(P4.X & " " & P4.Y);
+      Put(Float'Image(P2.X) & " " & Float'Image(P2.Y));
+      Put(Float'Image(P3.X) & " " & Float'Image(P3.Y));
+      Put(Float'Image(P4.X) & " " & Float'Image(P4.Y));
       Put(""" />");
    end Tracer_Bezier;
 
